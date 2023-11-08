@@ -1,0 +1,36 @@
+/* Pagination container */
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Pagination item */
+.pagination li {
+    margin-right: 8px;
+    display: inline;
+}
+
+/* Active page link */
+.pagination .active span {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #007BFF;
+    border-radius: 3px;
+}
+
+/* Inactive page link */
+.pagination li a {
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #007BFF;
+}
+
+/* Disabled page link */
+.pagination .disabled span {
+    color: #ccc;
+}
