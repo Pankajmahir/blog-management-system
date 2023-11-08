@@ -64,14 +64,11 @@
 
     $.ajax({
         type: 'POST',
-        url: '/comments', // Create a route for comment creation
+        url: '/comments',
         data: formData,
         success: function (response) {
             if (response.success) {
-                // Clear the form
                 $('#comment-form')[0].reset();
-
-                // Append the new comment to the comments section
                 var commentHtml = '<li class="list-group-item">';
                 commentHtml += '<strong>' + response.comment.name + '</strong> : <br>';
                 commentHtml += response.comment.content;

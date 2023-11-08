@@ -12,7 +12,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::paginate(12); // You can adjust the number of posts per page
+        $posts = Post::orderBy('created_at', 'desc')->paginate(12); // You can adjust the number of posts per page
         return view('posts.index', compact('posts'));
     }
 

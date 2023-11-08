@@ -16,7 +16,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Create Post</button>
     </form>
-    
 </div>
 @endsection
 

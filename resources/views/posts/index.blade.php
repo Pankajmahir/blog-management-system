@@ -3,31 +3,30 @@
 
 <div class="container mt-5 mb-5">
     <div class="row">
-    @foreach($posts as $post)
-        <div class="col-sm-3 mb-3 mt-3">
-        <div class="card">
-            <div class="card-body">
-            <h6 class="card-title">{{ Str::limit($post->title, 20) }}</h6>
-            <h6 class="card-subtitle mb-2 text-muted">{{ $post->user->name }}</h6>
-            <p class="card-text">{{ Str::limit($post->content, 100) }}</p>
-            <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">Read More</a>
-                @if(Auth::check() && Auth::user()->id === $post->user_id)
-                    <button class="btn btn-primary edit-post" data-post-id="{{ $post->id }}"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-danger delete-post" data-post-id="{{ $post->id }}"><i class="fas fa-trash-alt"></i></button>
-                @endif
+        @foreach($posts as $post)
+            <div class="col-sm-3 mb-3 mt-3">
+            <div class="card">
+                <div class="card-body">
+                <h6 class="card-title">{{ Str::limit($post->title, 20) }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{{ $post->user->name }}</h6>
+                <p class="card-text">{{ Str::limit($post->content, 100) }}</p>
+                <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">Read More</a>
+                    @if(Auth::check() && Auth::user()->id === $post->user_id)
+                        <button class="btn btn-primary edit-post" data-post-id="{{ $post->id }}"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-danger delete-post" data-post-id="{{ $post->id }}"><i class="fas fa-trash-alt"></i></button>
+                    @endif
+                </div>
             </div>
-        </div>
-        </div>
-    @endforeach
+            </div>
+        @endforeach
     
   </div>
   {{ $posts->links('pagination::bootstrap-4') }}
 </div>
   
+@endsection
 
-  @endsection
-
-  @section('script')
+@section('script')
 <script>
     
     $('.edit-post').click(function () {

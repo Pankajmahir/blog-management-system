@@ -22,36 +22,35 @@
 
 @section('script')
 <script>
-    
 
-$('#edit-post-form').submit(function (e) {
-    e.preventDefault();
-    var formData = $(this).serialize();
-    var postId = $(this).data('post-id');
+    $('#edit-post-form').submit(function (e) {
+        e.preventDefault();
+        var formData = $(this).serialize();
+        var postId = $(this).data('post-id');
 
-    $.ajax({
-        type: 'PUT',
-        url: '/posts/' + postId,
-        data: formData,
-        success: function (response) {
-            $('#response').html('<div class="alert alert-success">' + response.message + '</div>');
-           // $('#edit-post-form')[0].reset();
-        },
-        error: function (xhr, status, error) {
-            if (xhr.status === 422) {
-                var errors = JSON.parse(xhr.responseText).errors;
-                var errorHtml = '<div class="alert alert-danger"><ul>';
-                for (var key in errors) {
-                    errorHtml += '<li>' + errors[key] + '</li>';
+        $.ajax({
+            type: 'PUT',
+            url: '/posts/' + postId,
+            data: formData,
+            success: function (response) {
+                $('#response').html('<div class="alert alert-success">' + response.message + '</div>');
+            // $('#edit-post-form')[0].reset();
+            },
+            error: function (xhr, status, error) {
+                if (xhr.status === 422) {
+                    var errors = JSON.parse(xhr.responseText).errors;
+                    var errorHtml = '<div class="alert alert-danger"><ul>';
+                    for (var key in errors) {
+                        errorHtml += '<li>' + errors[key] + '</li>';
+                    }
+                    errorHtml += '</ul></div>';
+                    $('#response').html(errorHtml);
+                } else {
+                    $('#response').html('<div class="alert alert-danger">An error occurred.</div>');
                 }
-                errorHtml += '</ul></div>';
-                $('#response').html(errorHtml);
-            } else {
-                $('#response').html('<div class="alert alert-danger">An error occurred.</div>');
             }
-        }
+        });
     });
-});
 
 </script>
 @endsection
